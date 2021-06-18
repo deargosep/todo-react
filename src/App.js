@@ -15,6 +15,8 @@ export default function App() {
   function createTodo(e) {
     e.preventDefault();
     setTodo([...todos, { name: name, description: description }]);
+    setName('');
+    setDescription('');
   }
   function handleName(e) {
     setName(e.target.value);
@@ -42,12 +44,14 @@ export default function App() {
             type="text"
             onChange={handleName}
             name="name"
+            value={name}
             placeholder="name"
           />
           <Input
             type="text"
             onChange={handleDescription}
             name="description"
+            value={description}
             placeholder="description"
           />
           <input type="submit" />
