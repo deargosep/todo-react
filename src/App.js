@@ -24,6 +24,15 @@ export default function App() {
   function handleDescription(e) {
     setDescription(e.target.value);
   }
+  function del(index) {
+    console.log(index);
+    var array = [...todos]; // make a separate copy of the array
+    if (index !== -1) {
+      array.splice(index, 1);
+      setTodo(array);
+    }
+    console.log(todos)
+  }
   function clear() {
     setTodo([])
   }
@@ -35,8 +44,8 @@ export default function App() {
         <List
         header="Tasks"
           dataSource={todos}
-          renderItem={todo => (
-            <List.Item>
+          renderItem={(todo, index) => (
+            <List.Item actions={[<Button onClick={() => del(index)}>Delete</Button>]}>
             <List.Item.Meta title={todo.name} description={todo.description} />
             </List.Item>
           )}
@@ -46,6 +55,7 @@ export default function App() {
         <form onSubmit={createTodo}>
           <Input
             type="text"
+            required
             onChange={handleName}
             name="name"
             value={name}
@@ -54,6 +64,7 @@ export default function App() {
           <Input
             type="text"
             onChange={handleDescription}
+            required
             name="description"
             value={description}
             placeholder="description"
