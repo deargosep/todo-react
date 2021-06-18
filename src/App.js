@@ -25,13 +25,11 @@ export default function App() {
     setDescription(e.target.value);
   }
   function del(index) {
-    console.log(index);
     var array = [...todos]; // make a separate copy of the array
     if (index !== -1) {
       array.splice(index, 1);
       setTodo(array);
     }
-    console.log(todos)
   }
   function clear() {
     setTodo([])
@@ -51,7 +49,7 @@ export default function App() {
           )}
         />
       </Card>
-      <Card>
+      <div style={{padding: '15px'}}>
         <form onSubmit={createTodo}>
           <Input
             type="text"
@@ -69,10 +67,11 @@ export default function App() {
             value={description}
             placeholder="description"
           />
-          <input type="submit" />
+          <input style={{width: '100%'}} type="submit" />
         </form>
-        <Button onClick={clear}>Clear</Button>
-      </Card>
+        <br/>
+        <Button style={{width: '100%'}} onClick={clear}>Clear</Button>
+        </div>
     </div>
   );
 }
