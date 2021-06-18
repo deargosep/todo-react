@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, List, Card } from 'antd';
+import { Input, Button, List, Card } from 'antd';
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
 export default function App() {
@@ -24,12 +24,16 @@ export default function App() {
   function handleDescription(e) {
     setDescription(e.target.value);
   }
+  function clear() {
+    setTodo([])
+  }
   return (
     <div>
       <br/>
       <h1 style={{textAlign: 'center'}}>Todo app</h1>
       <Card>
         <List
+        header="Tasks"
           dataSource={todos}
           renderItem={todo => (
             <List.Item>
@@ -56,6 +60,7 @@ export default function App() {
           />
           <input type="submit" />
         </form>
+        <Button onClick={clear}>Clear</Button>
       </Card>
     </div>
   );
