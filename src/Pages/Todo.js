@@ -15,12 +15,17 @@ export default function Todo() {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const onSubmit = data => setTodo([...todos, data]);
-  const changeSubmit = (data, index) => {
-    let changingObj = todos[index]
-    changingObj = data
+  const changeSubmit = data => {
+    let changingObj = data
+    console.log(changingObj)
     let oldArray = todos;
-    oldArray[index] = changingObj
+    oldArray[change.index] = changingObj
     setTodo([...oldArray]);
+    let changeObj = {
+      isChanging: false,
+      index: null
+    }
+    setChange(changeObj)
   }
 
   const del = index => {
@@ -45,7 +50,7 @@ export default function Todo() {
           dataSource={todos}
           renderItem={(todo, index) => (
             <List.Item actions={[<Button onClick={() => del(index)}>Delete</Button>, <Button onClick={() => startChange(index)}>Edit</Button>]}>
-              {change.isChanging ? <form onSubmit={handleSubmit(changeSubmit(index))}>
+              {change.isChanging ? <form onSubmit={handleSubmit(changeSubmit)}>
           <Input
             {...register("name")}
             type="text"
@@ -60,7 +65,7 @@ export default function Todo() {
             name="description"
             placeholder="description"
           />
-          <input type="submit" />
+          <input type="submit"/>
         </form> : <List.Item.Meta title={todo.name} description={todo.description} />}
             </List.Item>
           )}
