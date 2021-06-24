@@ -13,7 +13,7 @@ export default function Todo() {
   const [todos, setTodo] = useState([initArray]);
   const [change, setChange] = useState({ isChanging: false, index: null });
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = data => setTodo([...todos, data]);
   const changeSubmit = data => {
     let changingObj = data
